@@ -1,9 +1,10 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { AnimatedSection } from "./animated-section"
-import { Mail, Phone, MapPin, Calendar, Globe, Code, Plane, Trophy } from "lucide-react"
+import { Mail, Phone, MapPin, Calendar, Globe, Code } from "lucide-react"
 
 export function About() {
-  
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-background via-background to-muted/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +14,7 @@ export function About() {
               About Me
             </h2>
             <p className="text-xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed">
-              Passionate Full-Stack Engineer crafting innovative digital solutions with modern technologies
+              Passionate Full-Stack Engineer crafting innovative digital solutions with modern technologies.
             </p>
           </div>
         </AnimatedSection>
@@ -32,22 +33,21 @@ export function About() {
                   </div>
                 </div>
 
-                <div className="font-[6px] space-y-4 text-muted-foreground leading-relaxed">
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Experienced Full-Stack Engineer with a passion for developing innovative solutions and creating
                     exceptional user experiences.
                   </p>
                   <p>
-                    Currently working as a freelance developer, applying expertise in
-                    modern web technologies to build scalable and efficient applications.
+                    Currently working as a freelance developer, applying expertise in modern web technologies to build
+                    scalable and efficient applications.
                   </p>
                   <p>
                     My technical journey spans from advanced React front-end development to robust back-end systems with
-                    NestJS, Python, and comprehensive database management. 
+                    NestJS, Python, and comprehensive database management.
                   </p>
                   <p>
-                    I thrive on transforming complex requirements
-                    into elegant, user-friendly solutions.
+                    I thrive on transforming complex requirements into elegant, user-friendly solutions.
                   </p>
                   <p>
                     With experience across various industries including healthcare, automotive, and logistics, I bring a
@@ -112,30 +112,6 @@ export function About() {
                 </CardContent>
               </Card>
             </AnimatedSection>
-            {/* Interests Section 
-            <AnimatedSection>
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-card/80 backdrop-blur-sm">
-                <CardContent className="p-6">
-                  <h4 className="font-bold text-lg mb-4 text-primary">Interests</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { icon: Code, label: "Web Dev" },
-                      { icon: Trophy, label: "Sports" },
-                      { icon: Plane, label: "Travel" },
-                      { icon: Code, label: "Coding" },
-                    ].map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-2 p-2 rounded-lg bg-muted/50 hover:bg-accent/20 transition-colors"
-                      >
-                        <item.icon className="w-4 h-4 text-accent" />
-                        <span className="text-sm font-medium">{item.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </AnimatedSection> */}
           </div>
         </div>
       </div>

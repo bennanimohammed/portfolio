@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import { ParticleCursor } from "./particle-cursor"
+import Image from "next/image"
 
 export function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -19,13 +20,13 @@ export function Hero() {
       aboutSection.scrollIntoView({ behavior: "smooth" })
     }
   }
-  const scrollToContact = () => {
-  const contactSection = document.getElementById("contact")
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: "smooth" })
-  }
-}
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
     <section
@@ -41,10 +42,12 @@ export function Hero() {
             isLoaded ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
           }`}
         >
-          <img
+          <Image
             src="/me.jpeg"
             alt="Mohammed Bennani"
-            className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-primary shadow-lg hover:scale-105 transition-transform duration-300"
+            width={192}
+            height={192}
+            className="rounded-full mx-auto mb-8 border-4 border-primary shadow-lg hover:scale-105 transition-transform duration-300"
           />
         </div>
 
@@ -54,7 +57,7 @@ export function Hero() {
           }`}
           style={{ transitionDelay: "200ms" }}
         >
-          <span className="text-foreground">Hi, I'm </span>
+          <span className="text-foreground">Hi, I&apos;m </span>
           <span className="text-primary bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
             Mohammed Bennani
           </span>
@@ -76,41 +79,24 @@ export function Hero() {
           style={{ transitionDelay: "600ms" }}
         >
           <Button size="lg" className="bg-primary hover:bg-primary/90 hover:scale-105 transition-all duration-200" onClick={scrollToContact}>
-
             <Mail className="mr-2 h-5 w-5" />
             Get In Touch
           </Button>
+
           <div className="flex gap-4">
-           <a
-                href="https://github.com/BennaniMohammed"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-          <Button
-                variant="outline"
-                size="lg"
-                className="hover:scale-105 transition-all duration-200 bg-transparent"
-          >
+            <a href="https://github.com/BennaniMohammed" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-200 bg-transparent">
                 <Github className="mr-2 h-5 w-5" />
-                    GitHub
-          </Button>
-          </a>
+                GitHub
+              </Button>
+            </a>
 
-            <a
-  href="https://www.linkedin.com/in/bennani-mohammed/"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button
-    variant="outline"
-    size="lg"
-    className="hover:scale-105 transition-all duration-200 bg-transparent"
-  >
-    <Linkedin className="mr-2 h-5 w-5" />
-    LinkedIn
-  </Button>
-</a>
-
+            <a href="https://www.linkedin.com/in/bennani-mohammed/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-200 bg-transparent">
+                <Linkedin className="mr-2 h-5 w-5" />
+                LinkedIn
+              </Button>
+            </a>
           </div>
         </div>
 

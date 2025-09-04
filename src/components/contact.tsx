@@ -23,7 +23,7 @@ export function Contact() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
-    console.log("formdata",formData);
+    console.log("formdata", formData)
     if (res.ok) {
       alert("✅ Thank you! Your message has been sent successfully.")
       setFormData({ name: "", email: "", subject: "", message: "" })
@@ -47,7 +47,7 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to work together? Let's discuss your next project
+            Ready to work together? Let&apos;s discuss your next project
           </p>
         </div>
 
@@ -97,29 +97,29 @@ export function Contact() {
               </CardHeader>
               <CardContent>
                 <div className="flex gap-4">
-                 <a
-  href="https://www.linkedin.com/in/bennani-mohammed/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex-1"
->
-  <Button variant="outline" size="lg" className="w-full bg-transparent">
-    <Linkedin className="mr-2 h-5 w-5" />
-    LinkedIn
-  </Button>
-</a>
+                  <a
+                    href="https://www.linkedin.com/in/bennani-mohammed/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button variant="outline" size="lg" className="w-full bg-transparent">
+                      <Linkedin className="mr-2 h-5 w-5" />
+                      LinkedIn
+                    </Button>
+                  </a>
 
                   <a
-  href="https://github.com/bennanimohammed"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex-1"
->
-  <Button variant="outline" size="lg" className="w-full bg-transparent">
-    <Github className="mr-2 h-5 w-5" />
-    GitHub
-  </Button>
-</a>
+                    href="https://github.com/bennanimohammed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button variant="outline" size="lg" className="w-full bg-transparent">
+                      <Github className="mr-2 h-5 w-5" />
+                      GitHub
+                    </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>

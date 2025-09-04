@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Play, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 interface ProjectVideo {
   src: string
@@ -39,25 +40,23 @@ export function ProjectCarousel({ project }: ProjectCarouselProps) {
   }
 
   const togglePlay = () => {
-    const video = document.getElementById(`video-${currentVideoIndex}`) as HTMLVideoElement
+    const video = document.getElementById(`video-${currentVideoIndex}`) as HTMLVideoElement | null
     if (video) {
-      if (isPlaying) {
-        video.pause()
-      } else {
-        video.play()
-      }
+      if (isPlaying) video.pause()
+      else video.play()
       setIsPlaying(!isPlaying)
     }
   }
 
+  const current = project.videos[currentVideoIndex]
+
   return (
     <div className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
-      {/* Video/Image Carousel */}
       <div className="relative h-64 overflow-hidden bg-muted">
-        {project.videos[currentVideoIndex].type === "video" ? (
+        {current.type === "video" ? (
           <video
             id={`video-${currentVideoIndex}`}
-            src={project.videos[currentVideoIndex].src}
+            src={current.src}
             className="w-full h-full object-cover"
             muted
             loop
@@ -65,26 +64,25 @@ export function ProjectCarousel({ project }: ProjectCarouselProps) {
             onPause={() => setIsPlaying(false)}
           />
         ) : (
-          <img
-            src={project.videos[currentVideoIndex].src || "/placeholder.svg"}
-            alt={project.videos[currentVideoIndex].alt}
+          <Image
+            src={current.src || "/placeholder.svg"}
+            alt={current.alt}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         )}
 
-        {/* Play/Pause Button for Videos */}
-        {project.videos[currentVideoIndex].type === "video" && (
+        {current.type === "video" && (
           <Button
             variant="ghost"
             size="icon"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             onClick={togglePlay}
+            aria-label={isPlaying ? "Pause video" : "Play video"}
           >
             {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
           </Button>
         )}
 
-        {/* Navigation Arrows */}
         {project.videos.length > 1 && (
           <>
             <Button
@@ -92,6 +90,7 @@ export function ProjectCarousel({ project }: ProjectCarouselProps) {
               size="icon"
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               onClick={prevVideo}
+              aria-label="Previous video"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -100,39 +99,38 @@ export function ProjectCarousel({ project }: ProjectCarouselProps) {
               size="icon"
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               onClick={nextVideo}
+              aria-label="Next video"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {project.videos.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentVideoIndex
+                      ? "bg-accent scale-125"
+                      : "bg-background/60 hover:bg-background/80"
+                  }`}
+                  onClick={() => {
+                    setCurrentVideoIndex(index)
+                    setIsPlaying(false)
+                  }}
+                  aria-label={`Go to ${index + 1} slide`}
+                />
+              ))}
+            </div>
           </>
         )}
 
-        {/* Video/Image Indicators */}
-        {project.videos.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {project.videos.map((video, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentVideoIndex ? "bg-accent scale-125" : "bg-background/60 hover:bg-background/80"
-                }`}
-                onClick={() => {
-                  setCurrentVideoIndex(index)
-                  setIsPlaying(false)
-                }}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Video Type Indicator */}
         <div className="absolute top-4 right-4">
           <Badge variant="secondary" className="text-xs bg-background/80">
-            {project.videos[currentVideoIndex].type === "video" ? "Video" : "Image"}
+            {current.type === "video" ? "Video" : "Image"}
           </Badge>
         </div>
       </div>
 
-      {/* Project Content */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-xl font-semibold text-accent group-hover:text-accent/80 transition-colors">
