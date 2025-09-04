@@ -89,7 +89,7 @@ export function Experience() {
       "A web application where clients can browse and request professional services including plumbing, heating, bathroom renovation, climate control, emergency response, and sustainable energy solutions. Each service is integrated with dynamic forms to streamline client requests and improve service delivery.",
     videos: [
       {
-        src: "/handwork.mp4", 
+        src: "/handworkk.mp4",
         alt: "Handwork services management platform demo",
         type: "video" as const,
       },
