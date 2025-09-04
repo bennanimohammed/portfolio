@@ -161,7 +161,7 @@ export function Experience() {
         description: "Designed and developed a digital navigation system for hospitals with IoT integration for precise indoor localization.",
         videos: [
           {
-            src: "/hospy.mp4",
+            src: "/hospyy.mp4",
             alt: "Hospital navigation system demo",
             type: "video" as const,
           },
