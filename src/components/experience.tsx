@@ -110,7 +110,7 @@ export function Experience() {
         description:
           "A web application where clients can browse and request professional services including plumbing, heating, bathroom renovation, climate control, emergency response, and sustainable energy solutions. Each service is integrated with dynamic forms to streamline client requests and improve service delivery.",
         videos: [
-          { src: "/handworkk.mp4", alt: "Handwork services management platform demo", type: "video" },
+          { src: "/videos/handworkk.mp4", alt: "Handwork services management platform demo", type: "video" },
         ],
         technologies: ["React", "TypeScript", "Tailwind CSS", "Spring Boot", "Docker"],
         githubUrl: "#",
@@ -128,7 +128,7 @@ export function Experience() {
         title: "Logistics Management System",
         description: "Development of internal applications for logistics management and optimization of temporary staff assignment processes",
         videos: [
-          { src: "/svn.mp4", alt: "Logistics management system demo", type: "video" },
+          { src: "/videos/svn.mp4", alt: "Logistics management system demo", type: "video" },
         ],
         technologies: ["React", "Node.js", "PostgreSQL", "Docker"],
         githubUrl: "#",
@@ -146,7 +146,7 @@ export function Experience() {
         title: "Automotive Garage Management",
         description: "Developed a comprehensive automotive maintenance garage system with role-based authentication and automated quotation generation.",
         videos: [
-          { src: "/kh-autosolutions.mp4", alt: "Automotive garage system demo", type: "video" },
+          { src: "/videos/kh-autosolutions.mp4", alt: "Automotive garage system demo", type: "video" },
         ],
         technologies: ["Next.js", "NestJS", "MongoDB", "Tailwind CSS"],
         githubUrl: "#",
@@ -163,7 +163,7 @@ export function Experience() {
         title: "Hospital Navigation System",
         description: "Designed and developed a digital navigation system for hospitals with IoT integration for precise indoor localization.",
         videos: [
-          { src: "/hospyy.mp4", alt: "Hospital navigation system demo", type: "video" },
+          { src: "/videos/hospyy.mp4", alt: "Hospital navigation system demo", type: "video" },
         ],
         technologies: ["React", "NestJS", "Docker", "IoT"],
         githubUrl: "#",
