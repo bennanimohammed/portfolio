@@ -11,6 +11,7 @@ export function Certificates() {
       category: "Cloud Computing",
       year: "2024",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/GM3U3NNTSXG7"
     },
     {
       title: "Introduction to Cybersecurity Tools & Cybersecurity Attacks",
@@ -18,6 +19,7 @@ export function Certificates() {
       category: "Cybersecurity",
       year: "2024",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/ACWUX5VBXJ4Y"
     },
     {
       title: "Docker",
@@ -25,6 +27,7 @@ export function Certificates() {
       category: "DevOps",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/10KM5R541H2B"
     },
     {
       title: "Interactivity with Javascript",
@@ -32,6 +35,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/AT63D8NPCFC8"
     },
     {
       title: "Introduction to CSS3",
@@ -39,6 +43,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/JUBR6FR3CMHC"
     },
     {
       title: "Introduction to HTML5",
@@ -46,6 +51,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/4XAD2PT72LPE"
     },
     {
       title: "Advanced React",
@@ -53,13 +59,15 @@ export function Certificates() {
       category: "Frontend Development",
       year: "2024",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/73R3QUJLVSBP"
     },
     {
-      title: "React.js",
+      title: "Build a Full Stack App using React and Express",
       provider: "Coursera",
       category: "Frontend Development",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/TG9ZFZJG4QY6"
     },
     {
       title: "Introduction to DevOps",
@@ -67,6 +75,7 @@ export function Certificates() {
       category: "DevOps",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/QDJWWNHEWPHL"
     },
     {
       title: "NestJS",
@@ -74,6 +83,7 @@ export function Certificates() {
       category: "Backend Development",
       year: "2024",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/UN25MXYFB276"
     },
     {
       title: "Python",
@@ -81,6 +91,7 @@ export function Certificates() {
       category: "Programming",
       year: "2023",
       verified: true,
+      link: "https://www.coursera.org/account/accomplishments/records/89KJJM9LG7WN"
     },
   ]
 
@@ -136,15 +147,26 @@ export function Certificates() {
                       <div className="p-2 rounded-lg bg-gradient-to-br from-purple-100 to-violet-100 group-hover:from-purple-200 group-hover:to-violet-200 transition-all duration-300">
                         <Award className="h-6 w-6 text-purple-600" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        {cert.verified && <CheckCircle className="h-4 w-4 text-green-500" />}
-                        <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-purple-600" />
-                      </div>
+                     <div className="flex items-center gap-2">
+  {cert.verified && <CheckCircle className="h-4 w-4 text-green-500" />}
+  {cert.link && (
+    <a href={cert.link} target="_blank" rel="noopener noreferrer">
+      <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-purple-600" />
+    </a>
+  )}
+</div>
                     </div>
-                    <CardTitle className="text-lg leading-tight text-balance group-hover:text-purple-700 transition-colors duration-300">
-                      {cert.title}
-                    </CardTitle>
-                  </CardHeader>
+  <a
+    href={cert.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group"
+  >
+    <CardTitle className="text-lg leading-tight text-balance group-hover:text-purple-700 transition-colors duration-300">
+      {cert.title}
+    </CardTitle>
+  </a>
+</CardHeader>
 
                   <CardContent>
                     <div className="space-y-3">
