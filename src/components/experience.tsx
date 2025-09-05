@@ -128,7 +128,7 @@ export function Experience() {
         title: "Logistics Management System",
         description: "Development of internal applications for logistics management and optimization of temporary staff assignment processes",
         videos: [
-          { src: "/videos/svn.mp4", alt: "Logistics management system demo", type: "video" },
+          { src: "/videos/svnn.mp4", alt: "Logistics management system demo", type: "video" },
         ],
         technologies: ["React", "Node.js", "PostgreSQL", "Docker"],
         githubUrl: "#",
