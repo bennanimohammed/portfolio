@@ -1,7 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+"use client"
+
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Award, ExternalLink, Calendar, CheckCircle } from "lucide-react"
-import { AnimatedSection } from "./animated-section"
+import { Button } from "@/components/ui/button"
+import { Award, ExternalLink, Calendar, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 export function Certificates() {
   const certificates = [
@@ -11,7 +14,8 @@ export function Certificates() {
       category: "Cloud Computing",
       year: "2024",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/GM3U3NNTSXG7"
+      link: "https://www.coursera.org/account/accomplishments/records/GM3U3NNTSXG7",
+      featured: true,
     },
     {
       title: "Introduction to Cybersecurity Tools & Cybersecurity Attacks",
@@ -19,7 +23,7 @@ export function Certificates() {
       category: "Cybersecurity",
       year: "2024",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/ACWUX5VBXJ4Y"
+      link: "https://www.coursera.org/account/accomplishments/records/ACWUX5VBXJ4Y",
     },
     {
       title: "Docker",
@@ -27,7 +31,7 @@ export function Certificates() {
       category: "DevOps",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/10KM5R541H2B"
+      link: "https://www.coursera.org/account/accomplishments/records/10KM5R541H2B",
     },
     {
       title: "Interactivity with Javascript",
@@ -35,7 +39,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/AT63D8NPCFC8"
+      link: "https://www.coursera.org/account/accomplishments/records/AT63D8NPCFC8",
     },
     {
       title: "Introduction to CSS3",
@@ -43,7 +47,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/JUBR6FR3CMHC"
+      link: "https://www.coursera.org/account/accomplishments/records/JUBR6FR3CMHC",
     },
     {
       title: "Introduction to HTML5",
@@ -51,7 +55,7 @@ export function Certificates() {
       category: "Web Development",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/4XAD2PT72LPE"
+      link: "https://www.coursera.org/account/accomplishments/records/4XAD2PT72LPE",
     },
     {
       title: "Advanced React",
@@ -59,7 +63,8 @@ export function Certificates() {
       category: "Frontend Development",
       year: "2024",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/73R3QUJLVSBP"
+      link: "https://www.coursera.org/account/accomplishments/records/73R3QUJLVSBP",
+      featured: true,
     },
     {
       title: "Build a Full Stack App using React and Express",
@@ -67,7 +72,7 @@ export function Certificates() {
       category: "Frontend Development",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/TG9ZFZJG4QY6"
+      link: "https://www.coursera.org/account/accomplishments/records/TG9ZFZJG4QY6",
     },
     {
       title: "Introduction to DevOps",
@@ -75,7 +80,7 @@ export function Certificates() {
       category: "DevOps",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/QDJWWNHEWPHL"
+      link: "https://www.coursera.org/account/accomplishments/records/QDJWWNHEWPHL",
     },
     {
       title: "NestJS",
@@ -83,7 +88,7 @@ export function Certificates() {
       category: "Backend Development",
       year: "2024",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/UN25MXYFB276"
+      link: "https://www.coursera.org/account/accomplishments/records/UN25MXYFB276",
     },
     {
       title: "Python",
@@ -91,135 +96,125 @@ export function Certificates() {
       category: "Programming",
       year: "2023",
       verified: true,
-      link: "https://www.coursera.org/account/accomplishments/records/89KJJM9LG7WN"
+      link: "https://www.coursera.org/account/accomplishments/records/89KJJM9LG7WN",
     },
   ]
 
-  const categories = [...new Set(certificates.map((cert) => cert.category))]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const itemsPerView = 3
+  const maxIndex = Math.max(0, certificates.length - itemsPerView)
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
 
   return (
-    <section id="certificates" className="py-20 bg-gradient-to-br from-background via-background to-purple-50/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-bold bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent mb-4">
-              Certificates & Training
-            </h2>
-            <p className="text-xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed">
-              Continuous learning and professional development through industry-recognized certifications
-            </p>
-          </div>
-        </AnimatedSection>
+    <section id="certificates" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Professional Certifications</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Industry-recognized certifications demonstrating expertise across modern technologies
+          </p>
+        </div>
 
-        <AnimatedSection delay={0.2}>
-          <div className="mb-12">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((category, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className="text-sm px-4 py-2 border-purple-200 text-purple-700 hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 cursor-pointer"
-                >
-                  {category}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </AnimatedSection>
+        <div className="relative">
+          {/* Navigation buttons */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background shadow-lg"
+            onClick={prevSlide}
+            disabled={certificates.length <= itemsPerView}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
 
-        <AnimatedSection delay={0.4}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certificates.map((cert, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-2xl hover:shadow-purple-100/50 transition-all duration-500 hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm overflow-hidden relative"
-              >
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-500 via-violet-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-                  style={{ padding: "1px" }}
-                >
-                  <div className="bg-white rounded-lg h-full w-full"></div>
-                </div>
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background shadow-lg"
+            onClick={nextSlide}
+            disabled={certificates.length <= itemsPerView}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
 
-                <div className="relative z-10">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-purple-100 to-violet-100 group-hover:from-purple-200 group-hover:to-violet-200 transition-all duration-300">
-                        <Award className="h-6 w-6 text-purple-600" />
+          <div className="overflow-hidden mx-12">
+            <div
+              className="flex transition-transform duration-300 ease-in-out gap-6"
+              style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
+            >
+              {certificates.map((cert, index) => (
+                <div key={index} className="flex-shrink-0 w-1/3">
+                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <Award className="h-5 w-5 text-primary" />
+                        </div>
+                        {cert.verified && (
+                          <div className="flex items-center gap-1 text-green-600 text-xs">
+                            <CheckCircle className="h-3 w-3" />
+                            Verified
+                          </div>
+                        )}
                       </div>
-                     <div className="flex items-center gap-2">
-  {cert.verified && <CheckCircle className="h-4 w-4 text-green-500" />}
-  {cert.link && (
-    <a href={cert.link} target="_blank" rel="noopener noreferrer">
-      <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-purple-600" />
-    </a>
-  )}
-</div>
-                    </div>
-  <a
-    href={cert.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group"
-  >
-    <CardTitle className="text-lg leading-tight text-balance group-hover:text-purple-700 transition-colors duration-300">
-      {cert.title}
-    </CardTitle>
-  </a>
-</CardHeader>
 
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-gray-600">{cert.provider}</p>
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Calendar className="h-3 w-3" />
-                          {cert.year}
+                      <h3 className="font-semibold text-sm mb-3 line-clamp-2 leading-tight">{cert.title}</h3>
+
+                      <div className="space-y-2 mb-4">
+                        <p className="text-sm text-muted-foreground">{cert.provider}</p>
+                        <div className="flex items-center justify-between">
+                          <Badge variant="secondary" className="text-xs">
+                            {cert.category}
+                          </Badge>
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            {cert.year}
+                          </div>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <Badge
-                          variant="secondary"
-                          className="text-xs bg-gradient-to-r from-purple-100 to-violet-100 text-purple-700 border-purple-200 hover:from-purple-200 hover:to-violet-200 transition-all duration-300"
-                        >
-                          {cert.category}
-                        </Badge>
-                        {cert.verified && (
-                          <span className="text-xs text-green-600 font-medium flex items-center gap-1">
-                            <CheckCircle className="h-3 w-3" />
-                            Verified
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
+                      {cert.link && (
+                        <Button variant="ghost" size="sm" className="w-full" asChild>
+                          <a href={cert.link} target="_blank" rel="noopener noreferrer">
+                            View Certificate
+                            <ExternalLink className="ml-2 h-3 w-3" />
+                          </a>
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
                 </div>
-              </Card>
-            ))}
+              ))}
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
 
-        <AnimatedSection delay={0.6}>
-          <div className="text-center mt-16">
-            <Card className="inline-block border-0 bg-gradient-to-br from-purple-50 to-violet-50 shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-gradient-to-br from-purple-500 to-violet-500">
-                    <Award className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-bold text-2xl text-purple-700">{certificates.length} Certificates</p>
-                    <p className="text-sm text-purple-600 font-medium">Completed from Coursera Platform</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      All certificates are verified and industry-recognized
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        <div className="flex justify-center mt-8 gap-2">
+          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-primary" : "bg-muted"}`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <div className="inline-flex items-center gap-4 bg-muted/50 rounded-lg p-4">
+            <Award className="h-6 w-6 text-primary" />
+            <div>
+              <p className="font-semibold">{certificates.length} Certificates</p>
+              <p className="text-sm text-muted-foreground">All verified by Coursera</p>
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   )
