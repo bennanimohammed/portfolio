@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Award, ExternalLink, Calendar, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function Certificates() {
   const certificates = [
@@ -101,7 +101,24 @@ export function Certificates() {
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerView = 3
+  const [itemsPerView, setItemsPerView] = useState(3)
+
+  // 🔥 Responsive : items affichés selon largeur écran
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerView(1)
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(2)
+      } else {
+        setItemsPerView(3)
+      }
+    }
+    updateItemsPerView()
+    window.addEventListener("resize", updateItemsPerView)
+    return () => window.removeEventListener("resize", updateItemsPerView)
+  }, [])
+
   const maxIndex = Math.max(0, certificates.length - itemsPerView)
 
   const nextSlide = () => {
@@ -115,6 +132,7 @@ export function Certificates() {
   return (
     <section id="certificates" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Titre */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Professional Certifications</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -123,7 +141,7 @@ export function Certificates() {
         </div>
 
         <div className="relative">
-          {/* Navigation buttons */}
+          {/* Boutons navigation */}
           <Button
             variant="outline"
             size="icon"
@@ -144,13 +162,17 @@ export function Certificates() {
             <ChevronRight className="h-4 w-4" />
           </Button>
 
+          {/* Carrousel */}
           <div className="overflow-hidden mx-12">
             <div
               className="flex transition-transform duration-300 ease-in-out gap-6"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
             >
               {certificates.map((cert, index) => (
-                <div key={index} className="flex-shrink-0 w-1/3">
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3"
+                >
                   <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
@@ -196,16 +218,20 @@ export function Certificates() {
           </div>
         </div>
 
+        {/* Dots navigation */}
         <div className="flex justify-center mt-8 gap-2">
           {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-primary" : "bg-muted"}`}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex ? "bg-primary" : "bg-muted"
+              }`}
               onClick={() => setCurrentIndex(index)}
             />
           ))}
         </div>
 
+        {/* Résumé */}
         <div className="text-center mt-12">
           <div className="inline-flex items-center gap-4 bg-muted/50 rounded-lg p-4">
             <Award className="h-6 w-6 text-primary" />
