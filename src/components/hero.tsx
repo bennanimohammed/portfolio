@@ -1,7 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { ArrowDown, ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import { ParticleCursor } from "./particle-cursor"
 import Image from "next/image"
@@ -82,6 +88,36 @@ export function Hero() {
             <Mail className="mr-2 h-5 w-5" />
             Get In Touch
           </Button>
+
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button
+      variant="outline"
+      size="lg"
+      className="hover:scale-105 transition-all duration-200"
+    >
+      <Download className="mr-2 h-5 w-5" />
+      Download CV
+      <ChevronDown className="ml-2 h-4 w-4" />
+    </Button>
+  </DropdownMenuTrigger>
+
+  <DropdownMenuContent align="center">
+    <DropdownMenuItem asChild>
+      <a href="/Mohammed-Bennani_cv.pdf" download="Mohammed-Bennani-CV-FR.pdf">
+        🇫🇷 CV en français
+      </a>
+    </DropdownMenuItem>
+
+    <DropdownMenuItem asChild>
+      <a href="/Mohammed-Bennani_eng.pdf" download="Mohammed-Bennani-CV-EN.pdf">
+        🇬🇧 CV in English
+      </a>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
 
           <div className="flex gap-4">
             <a href="https://github.com/BennaniMohammed" target="_blank" rel="noopener noreferrer">

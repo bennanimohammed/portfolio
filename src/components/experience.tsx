@@ -69,9 +69,11 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
         </div>
       </CardHeader>
       <CardContent>
-        <div className="mb-6">
-          <ProjectCarousel project={exp.project} />
-        </div>
+        {exp.project.videos.length > 0 && (
+  <div className="mb-6">
+    <ProjectCarousel project={exp.project} />
+  </div>
+)}
         <p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>
         <div className="flex flex-wrap gap-2">
           {exp.skills.map((skill, skillIndex) => (
@@ -98,6 +100,39 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
 
 export function Experience() {
   const experiences: ExperienceType[] = [
+
+{
+  title: "Full-Stack Freelance Engineer",
+  company: "AMDK Service | UNCTAD Project",
+  location: "Remote", // À adapter si nécessaire
+  period: "July 2023 – November 2025",
+  description:
+    "Contributed to the development and maintenance of the ReformTracker platform, building frontend interfaces with Next.js and backend services with Node.js. Worked on APIs, data integration, unit and integration testing, Agile collaboration, deployment, updates, and operational monitoring. Some implementation details are confidential.",
+  skills: [
+    "Next.js",
+    "React",
+    "Node.js",
+    "REST APIs",
+    "Unit Testing",
+    "Integration Testing",
+    "Agile / Scrum",
+    "Deployment & Monitoring",
+  ],
+  project: {
+    title: "ReformTracker Platform",
+    description:
+      "Contributed to a web-based solution featuring a homepage, news, newsletter, notifications, and dynamic user interfaces, alongside backend business logic and platform maintenance. Administrative implementation details are not publicly displayed due to confidentiality.",
+    videos: [],
+    technologies: [
+      "Next.js",
+      "Node.js",
+      "API Integration",
+      "Software Testing",
+    ],
+    githubUrl: "",
+  },
+},
+
     {
       title: "Full-Stack Engineer",
       company: "Apexiom",
